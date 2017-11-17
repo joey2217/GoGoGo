@@ -3,9 +3,6 @@
 ### 什么是Go
     Go是一种新的语言，一种并发的、带垃圾回收的、快速编译的语言。
    
-    它具有以下特点：它可以在一台计算机上用几秒钟的时间编译一个大型的Go程序。Go为软件构造提供了一种模型，它使依赖分析更加容易，且避免了大部分C风格include文件与库的开头。Go是静态类型的语言，它的类型系统没有层级。因此用户不需要在定义类型之间的关系上花费时间，这样感觉起来比典型的面向对象语言更轻量级。Go完全是垃圾回收型的语言，并为并发执行与通信提供了基本的支持。按照其设计，Go打算为多核机器上系统软件的构造提供一种方法。
-
-    Go是一种编译型语言，它结合了解释型语言的游刃有余，动态类型语言的开发效率，以及静态类型的安全性。它也打算成为现代的，支持网络与多核计算的语言。要满足这些目标，需要解决一些语言上的问题：一个富有表达能力但轻量级的类型系统，并发与垃圾回收机制，严格的依赖规范等等。这些无法通过库或工具解决好，因此Go也就应运而生了。
 ###  Go开发环境搭建
 #### Windows Go环境
 1)	下载Go安装包（https://studygolang.com/dl）， 32 位请选择名称中包含 windows-386 的 msi 安装包，64 位请选择名称中包含 windows-amd64 的。
@@ -45,7 +42,40 @@
 5)  [opensds](https://github.com/opensds)
 ####	Go
 1.go连接数据库
-
-
+  
+  使用[Mysql数据库](https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/05.2.md)
 #### Go Web
-1.Beego
+1.Beego快速开始
+
+下载安装
+
+    go get github.com/astaxie/beego
+
+创建文件 hello.go
+
+    package main
+
+    import "github.com/astaxie/beego"
+
+    func main() {
+        beego.Run()
+    }
+
+运行hello.go,访问http://localhost:8080
+
+2.快速使用Bee工具
+
+Bee工具安装
+
+    go get github.com/beego/bee
+
+new命令创建新项目
+
+    bee new myproject
+
+运行项目
+
+    cd $GOPATH/src/myproject 
+    bee run
+
+访问http://localhost:8080/
