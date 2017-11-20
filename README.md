@@ -44,8 +44,46 @@
 1.go连接数据库
   
   使用[Mysql数据库](https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/05.2.md)
+
+  [实例]()
+
+2.Go [XML处理](https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/07.1.md)
+##### 解析XML
+
+[实例]()
+
+将XML文件解析成对应的struct对象是通过xml.Unmarshal来完成的。在struct定义后多了类似于xml:"serverName"这样的内容，被称为struct  tag，它们是用来辅助反射的。Unmarshal的定义：
+
+        func Unmarshal(data []byte,v interface{}) error
+
+两个参数，第一个：XML数据流，第二个：存储的对应类型，目前支持struct，slice和string，XML包内部采用了反射来进行数据的映射，所以v里面的字段必须是导出的。Unmarshal解析的时候XML元素的时候，XML元素和字段是按优先级读取的，首先会读取struct tag，如果没有，那么就会对应字段名。解析的时候tag、字段名、XML元素都是大小写敏感的，所以必须一一对应字段。
+
+##### 输出XML
+
+[实例]()
+
+xml包中提供了`Marshal`和`MarshalIndent`两个函数来实现输出XML：
+
+    func Marshal(v interface{})([]byte,error)
+    func MarshalIndent(v interface{},prefix,indent string)([]byte error)  
+
+`MarshalIndent`函数增加了前缀和缩进。
+两个函数的第一个参数v是用来生成XML的结构定义类型数据，都是返回生成XML的数据流。
+
+3.Json
+##### 解析Json
+
+[实例]()
+
+Go的Json包的`Unmarshal`函数
+
+    func Unmarshal(data []byte,v interface{}) error
+
+首先定义与Json数据对应的结构体，数组对应slice，字段名对应Json里面的Key，在解析时，首先查找tag中含有Key的可导出的struct字段，其次查找字段名为Key的导出字段，最后查找类似Key的除了首字母之外其他大小写不敏感的导出字段。
+
+    
 #### Go Web
-1.Beego快速开始
+1.[Beego](https://beego.me/)快速开始
 
 下载安装
 
